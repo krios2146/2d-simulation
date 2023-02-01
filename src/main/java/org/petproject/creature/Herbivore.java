@@ -1,4 +1,4 @@
-package org.petproject;
+package org.petproject.creature;
 
 public class Herbivore extends Creature {
 
