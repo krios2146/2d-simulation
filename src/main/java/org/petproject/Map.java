@@ -53,11 +53,18 @@ public class Map {
                 }
 
                 Coordinates randomCoordinates = randomizeCoordinatesOfObject(entity);
+                entity.setCoordinates(randomCoordinates);
+
+                addObject(entity);
             }
         }
 
-
         return map;
+    }
+
+    public void addObject(Entity object) {
+        Coordinates coordinates = object.getCoordinates();
+        map[coordinates.x][coordinates.y] = object;
     }
 
     /**
