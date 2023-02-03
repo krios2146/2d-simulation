@@ -1,4 +1,4 @@
-package org.petproject.creature;
+package org.petproject.entity.creature;
 
 public class Predator extends Creature {
     int attack;

@@ -1,4 +1,4 @@
-package org.petproject.creature;
+package org.petproject.entity.creature;
 
 import org.petproject.entity.Entity;
 
