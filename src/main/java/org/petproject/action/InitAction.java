@@ -4,6 +4,7 @@ import org.petproject.Coordinates;
 import org.petproject.Map;
 import org.petproject.entity.Entity;
 import org.petproject.entity.Grass;
+import org.petproject.entity.Ground;
 import org.petproject.entity.stationary.Rock;
 import org.petproject.entity.stationary.Tree;
 import org.petproject.entity.creature.Herbivore;
@@ -34,6 +35,17 @@ public class InitAction extends Action {
                 map.addObject(entityWithRandomCoordinates);
             }
         });
+
+        for (int i = 0; i < map.getMap().length; i++) {
+            for (int j = 0; j < map.getMap()[i].length; j++) {
+                Entity entity = map.getMap()[i][j];
+
+                if (entity == null) {
+                    Ground ground = new Ground(new Coordinates(i, j));
+                    map.addObject(ground);
+                }
+            }
+        }
 
         return map;
     }
