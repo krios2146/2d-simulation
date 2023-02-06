@@ -2,7 +2,11 @@ package org.petproject;
 
 import org.petproject.entity.Entity;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BreadthFirstSearch {
 
@@ -11,14 +15,18 @@ public class BreadthFirstSearch {
     private List<Coordinates> queuedCoordinates;
     private List<Coordinates> exploredCoordinates;
     private Entity objectToFind;
+    private HashMap<Coordinates, Coordinates> childParentMap = new HashMap<>();
+    private int graphDepth = 0;
 
-    public Coordinates findClosestObjectCoordinates(Coordinates currentCoordinates, Entity objectToFind) {
+    public List<Coordinates> findClosestObjectCoordinates(Coordinates currentCoordinates, Entity objectToFind) {
         this.map = simulation.getMap().getMap();
         this.objectToFind = objectToFind;
 
         queuedCoordinates.add(currentCoordinates);
 
-        return exploreQueuedObjects();
+        Coordinates coordinatesOfDesiredObject = exploreQueuedObjects();
+
+        return findWayToObject(coordinatesOfDesiredObject);
     }
 
     private Coordinates exploreQueuedObjects() {
@@ -35,6 +43,8 @@ public class BreadthFirstSearch {
             exploredCoordinates.add(coordinate);
 
             findEnqueuedCoordinates(coordinate);
+
+            graphDepth++;
         }
 
         if (coordinatesOfDesiredObject == null) {
@@ -55,9 +65,23 @@ public class BreadthFirstSearch {
                 Coordinates coordinatesOfEnqueuedObject = new Coordinates(i, j);
 
                 if (!queuedCoordinates.contains(coordinatesOfEnqueuedObject) && !exploredCoordinates.contains(coordinatesOfEnqueuedObject)) {
+                    childParentMap.put(coordinatesOfEnqueuedObject, coordinates);
                     queuedCoordinates.add(coordinatesOfEnqueuedObject);
                 }
             }
         }
+    }
+
+    private List<Coordinates> findWayToObject(Coordinates coordinatesOfDesiredObject) {
+        List<Coordinates> way = new ArrayList<>(graphDepth);
+
+        for (int i = graphDepth; i > 0; i--) {
+            Coordinates coordinates = childParentMap.get(coordinatesOfDesiredObject);
+            way.add(coordinates);
+        }
+
+        way = way.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList());
+
+        return way;
     }
 }
