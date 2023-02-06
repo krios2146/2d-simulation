@@ -16,7 +16,7 @@ public class Simulation {
     }
 
     public void startSimulation() {
-        initAction.initMap();
+        map = initAction.initMap();
 
         while (!isGameStopped) {
             nextTurn();
