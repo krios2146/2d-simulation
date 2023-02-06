@@ -30,7 +30,7 @@ public class Herbivore extends Creature {
 
     @Override
     public String toString() {
-        return "H";
+        return "🐔";
     }
 
     public int getHp() {

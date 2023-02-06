@@ -13,6 +13,6 @@ public class Ground extends Entity {
 
     @Override
     public String toString() {
-        return "G";
+        return "🟫";
     }
 }

@@ -13,6 +13,6 @@ public class Rock extends Stationary {
 
     @Override
     public String toString() {
-        return "R";
+        return "⚫";
     }
 }

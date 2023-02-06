@@ -13,6 +13,6 @@ public class Tree extends Stationary {
 
     @Override
     public String toString() {
-        return "T";
+        return "🌲";
     }
 }
