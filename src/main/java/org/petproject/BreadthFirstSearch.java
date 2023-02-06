@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 
 public class BreadthFirstSearch {
 
-    private Simulation simulation;
+    private final Simulation simulation = Main.simulation;
     private Entity[][] map;
-    private List<Coordinates> queuedCoordinates;
-    private List<Coordinates> exploredCoordinates;
+    private final List<Coordinates> queuedCoordinates = new ArrayList<>();
+    private final List<Coordinates> exploredCoordinates = new ArrayList<>();
     private Entity objectToFind;
-    private HashMap<Coordinates, Coordinates> childParentMap = new HashMap<>();
+    private final HashMap<Coordinates, Coordinates> childParentMap = new HashMap<>();
     private int graphDepth = 0;
 
     public List<Coordinates> findClosestObjectCoordinates(Coordinates currentCoordinates, Entity objectToFind) {
@@ -34,7 +34,7 @@ public class BreadthFirstSearch {
         Coordinates coordinatesOfDesiredObject = null;
 
         for (Coordinates coordinate : queuedCoordinates) {
-            Entity object = map[coordinate.x][coordinate.y];
+            Entity object = map[coordinate.getX()][coordinate.getY()];
 
             if (object.getClass().equals(objectToFind.getClass())) {
                 coordinatesOfDesiredObject = coordinate;
@@ -56,19 +56,19 @@ public class BreadthFirstSearch {
     }
 
     private void findEnqueuedCoordinates(Coordinates coordinates) {
-        int startX = coordinates.x - 1;
-        int endX = coordinates.x + 1;
-        int startY = coordinates.y - 1;
-        int endY = coordinates.y + 1;
+        int startX = coordinates.getX() - 1;
+        int endX = coordinates.getX() + 1;
+        int startY = coordinates.getY() - 1;
+        int endY = coordinates.getY() + 1;
 
         for (int i = startX; i <= endX; i++) {
-            for (int j = startY; i <= endY; i++) {
-                Coordinates coordinatesOfEnqueuedObject = new Coordinates(i, j);
-                Entity entity = map[coordinates.x][coordinates.y];
+            for (; i <= endY; i++) {
+                Coordinates coordinatesOfEnqueuedObject = new Coordinates(i, startY);
+                Entity entity = map[coordinates.getX()][coordinates.getY()];
 
                 if (!queuedCoordinates.contains(coordinatesOfEnqueuedObject)
                         && !exploredCoordinates.contains(coordinatesOfEnqueuedObject)
-                        && !(entity instanceof Stationary stationary)) {
+                        && !(entity instanceof Stationary)) {
                     childParentMap.put(coordinatesOfEnqueuedObject, coordinates);
                     queuedCoordinates.add(coordinatesOfEnqueuedObject);
                 }
