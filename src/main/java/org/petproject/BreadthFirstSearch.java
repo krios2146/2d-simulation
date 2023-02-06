@@ -59,9 +59,24 @@ public class BreadthFirstSearch {
 
     private void findEnqueuedCoordinates(Coordinates coordinates) {
         int startX = coordinates.getX() - 1;
+        if (startX < 0) {
+            startX = 0;
+        }
+
         int endX = coordinates.getX() + 1;
+        if (endX > 9) {
+            startX = 9;
+        }
+
         int startY = coordinates.getY() - 1;
+        if (startY < 0) {
+            startY = 0;
+        }
+
         int endY = coordinates.getY() + 1;
+        if (endY > 9) {
+            endY = 9;
+        }
 
         for (int i = startX; i <= endX; i++) {
             for (; i <= endY; i++) {
