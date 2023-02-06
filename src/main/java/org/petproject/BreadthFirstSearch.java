@@ -1,7 +1,6 @@
 package org.petproject;
 
 import org.petproject.entity.Entity;
-import org.petproject.entity.creature.Creature;
 
 import java.util.List;
 
@@ -11,9 +10,9 @@ public class BreadthFirstSearch {
     private Entity[][] map;
     private List<Coordinates> queuedCoordinates;
     private List<Coordinates> exploredCoordinates;
-    private Creature objectToFind;
+    private Entity objectToFind;
 
-    public Coordinates findClosestObjectCoordinates(Coordinates currentCoordinates, Creature objectToFind) {
+    public Coordinates findClosestObjectCoordinates(Coordinates currentCoordinates, Entity objectToFind) {
         this.map = simulation.getMap().getMap();
         this.objectToFind = objectToFind;
 
