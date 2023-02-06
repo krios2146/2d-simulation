@@ -41,4 +41,12 @@ public class Map {
         map[coordinates.x][coordinates.y] = object;
     }
 
+    public void refreshMap() {
+        for (Entity[] entities : map) {
+            for (Entity entity : entities) {
+                map[entity.getCoordinates().x][entity.getCoordinates().y] = entity;
+            }
+        }
+    }
+
 }
