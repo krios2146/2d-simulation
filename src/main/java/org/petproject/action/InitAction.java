@@ -4,8 +4,8 @@ import org.petproject.Coordinates;
 import org.petproject.Map;
 import org.petproject.entity.Entity;
 import org.petproject.entity.Grass;
-import org.petproject.entity.Rock;
-import org.petproject.entity.Tree;
+import org.petproject.entity.stationary.Rock;
+import org.petproject.entity.stationary.Tree;
 import org.petproject.entity.creature.Herbivore;
 import org.petproject.entity.creature.Predator;
 

@@ -1,15 +1,16 @@
-package org.petproject.entity;
+package org.petproject.entity.stationary;
 
 import org.petproject.Coordinates;
+import org.petproject.entity.stationary.Stationary;
 
-public class Rock extends Entity {
+public class Tree extends Stationary {
     private final Coordinates coordinates;
 
-    public Rock(Coordinates coordinates) {
+    public Tree(Coordinates coordinates) {
         this.coordinates = coordinates;
     }
 
-    public Rock() {
+    public Tree() {
         this.coordinates = new Coordinates();
     }
 
@@ -19,6 +20,6 @@ public class Rock extends Entity {
 
     @Override
     public String toString() {
-        return "R";
+        return "T";
     }
 }
