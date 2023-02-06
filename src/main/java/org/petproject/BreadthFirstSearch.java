@@ -33,7 +33,9 @@ public class BreadthFirstSearch {
     private Coordinates exploreQueuedObjects() {
         Coordinates coordinatesOfDesiredObject = null;
 
-        for (Coordinates coordinate : queuedCoordinates) {
+        for (int i = 0; i < queuedCoordinates.size(); i++) {
+            Coordinates coordinate = queuedCoordinates.get(i);
+
             Entity object = map[coordinate.getX()][coordinate.getY()];
 
             if (object.getClass().equals(objectToFind.getClass())) {
