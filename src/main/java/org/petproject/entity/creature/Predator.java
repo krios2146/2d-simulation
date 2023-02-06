@@ -2,7 +2,6 @@ package org.petproject.entity.creature;
 
 import org.petproject.BreadthFirstSearch;
 import org.petproject.Coordinates;
-import org.petproject.entity.Grass;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class Predator extends Creature {
 
     @Override
     public void makeMove() {
-        List<Coordinates> wayToObject = breadthFirstSearch.findClosestObjectCoordinates(this.getCoordinates(), new Grass());
+        List<Coordinates> wayToObject = breadthFirstSearch.findClosestObjectCoordinates(this.getCoordinates(), new Herbivore());
         Coordinates coordinatesToMove = wayToObject.get(speed - 1);
         this.setCoordinates(coordinatesToMove);
     }
