@@ -1,6 +1,7 @@
 package org.petproject;
 
 import org.petproject.entity.Entity;
+import org.petproject.entity.stationary.Stationary;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -63,8 +64,11 @@ public class BreadthFirstSearch {
         for (int i = startX; i <= endX; i++) {
             for (int j = startY; i <= endY; i++) {
                 Coordinates coordinatesOfEnqueuedObject = new Coordinates(i, j);
+                Entity entity = map[coordinates.x][coordinates.y];
 
-                if (!queuedCoordinates.contains(coordinatesOfEnqueuedObject) && !exploredCoordinates.contains(coordinatesOfEnqueuedObject)) {
+                if (!queuedCoordinates.contains(coordinatesOfEnqueuedObject)
+                        && !exploredCoordinates.contains(coordinatesOfEnqueuedObject)
+                        && !(entity instanceof Stationary stationary)) {
                     childParentMap.put(coordinatesOfEnqueuedObject, coordinates);
                     queuedCoordinates.add(coordinatesOfEnqueuedObject);
                 }
