@@ -38,13 +38,13 @@ public class Map {
      */
     public void addObject(Entity object) {
         Coordinates coordinates = object.getCoordinates();
-        map[coordinates.x][coordinates.y] = object;
+        map[coordinates.getX()][coordinates.getY()] = object;
     }
 
     public void refreshMap() {
         for (Entity[] entities : map) {
             for (Entity entity : entities) {
-                map[entity.getCoordinates().x][entity.getCoordinates().y] = entity;
+                map[entity.getCoordinates().getX()][entity.getCoordinates().getY()] = entity;
             }
         }
     }
