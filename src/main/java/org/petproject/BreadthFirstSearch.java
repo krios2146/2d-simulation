@@ -95,14 +95,14 @@ public class BreadthFirstSearch {
     }
 
     private List<Coordinates> findWayToObject(Coordinates coordinatesOfDesiredObject) {
-        List<Coordinates> way = new ArrayList<>(graphDepth);
+        List<Coordinates> way = new ArrayList<>();
 
-        for (int i = graphDepth; i > 0; i--) {
-            Coordinates coordinates = childParentMap.get(coordinatesOfDesiredObject);
-            way.add(coordinates);
+        while (childParentMap.containsKey(coordinatesOfDesiredObject)) {
+            way.add(coordinatesOfDesiredObject);
+            coordinatesOfDesiredObject = childParentMap.get(coordinatesOfDesiredObject);
         }
 
-        way = way.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList());
+        Collections.reverse(way);
 
         return way;
     }
