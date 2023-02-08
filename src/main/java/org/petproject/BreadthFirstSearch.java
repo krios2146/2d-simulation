@@ -66,7 +66,7 @@ public class BreadthFirstSearch {
 
         int endX = coordinates.getX() + 1;
         if (endX > 9) {
-            startX = 9;
+            endX = 9;
         }
 
         int startY = coordinates.getY() - 1;
