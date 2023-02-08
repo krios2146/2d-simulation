@@ -42,7 +42,6 @@ public class BreadthFirstSearch {
                 coordinatesOfDesiredObject = coordinate;
             }
 
-            queuedCoordinates.remove(coordinate);
             exploredCoordinates.add(coordinate);
 
             findEnqueuedCoordinates(coordinate);
@@ -79,9 +78,9 @@ public class BreadthFirstSearch {
         }
 
         for (int i = startX; i <= endX; i++) {
-            for (; i <= endY; i++) {
-                Coordinates coordinatesOfEnqueuedObject = new Coordinates(i, startY);
-                Entity entity = map[coordinates.getX()][coordinates.getY()];
+            for (int j = startY; j <= endY; j++) {
+                Coordinates coordinatesOfEnqueuedObject = new Coordinates(i, j);
+                Entity entity = map[coordinatesOfEnqueuedObject.getX()][coordinatesOfEnqueuedObject.getY()];
 
                 if (!queuedCoordinates.contains(coordinatesOfEnqueuedObject)
                         && !exploredCoordinates.contains(coordinatesOfEnqueuedObject)
