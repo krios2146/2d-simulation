@@ -17,7 +17,6 @@ public class BreadthFirstSearch {
     private final List<Coordinates> exploredCoordinates = new ArrayList<>();
     private Entity objectToFind;
     private final HashMap<Coordinates, Coordinates> childParentMap = new HashMap<>();
-    private int graphDepth = 0;
 
     public List<Coordinates> findClosestObjectCoordinates(Coordinates currentCoordinates, Entity objectToFind) {
         this.map = simulation.getMap().getMap();
@@ -27,35 +26,36 @@ public class BreadthFirstSearch {
 
         Coordinates coordinatesOfDesiredObject = exploreQueuedObjects();
 
+        if (coordinatesOfDesiredObject == null) {
+            coordinatesOfDesiredObject = exploreQueuedObjects();
+        }
+
         return findWayToObject(coordinatesOfDesiredObject);
     }
 
     private Coordinates exploreQueuedObjects() {
-        Coordinates coordinatesOfDesiredObject = null;
-
         for (int i = 0; i < queuedCoordinates.size(); i++) {
             Coordinates coordinate = queuedCoordinates.get(i);
 
             Entity object = map[coordinate.getX()][coordinate.getY()];
 
             if (object.getClass().equals(objectToFind.getClass())) {
-                coordinatesOfDesiredObject = coordinate;
+                return coordinate;
             }
 
             exploredCoordinates.add(coordinate);
-
-            findEnqueuedCoordinates(coordinate);
-
-            graphDepth++;
         }
 
         queuedCoordinates.removeAll(exploredCoordinates);
+        findEnqueuedCoordinates();
 
-        if (coordinatesOfDesiredObject == null) {
-            exploreQueuedObjects();
+        return null;
+    }
+
+    private void findEnqueuedCoordinates() {
+        for (Coordinates coordinate : exploredCoordinates) {
+            findEnqueuedCoordinates(coordinate);
         }
-
-        return coordinatesOfDesiredObject;
     }
 
     private void findEnqueuedCoordinates(Coordinates coordinates) {
