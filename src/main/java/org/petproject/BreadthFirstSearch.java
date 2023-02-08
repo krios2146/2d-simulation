@@ -49,6 +49,8 @@ public class BreadthFirstSearch {
             graphDepth++;
         }
 
+        queuedCoordinates.removeAll(exploredCoordinates);
+
         if (coordinatesOfDesiredObject == null) {
             exploreQueuedObjects();
         }
