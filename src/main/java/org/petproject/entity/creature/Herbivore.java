@@ -13,6 +13,12 @@ import static org.petproject.Main.simulation;
 public class Herbivore extends Creature {
     private BreadthFirstSearch breadthFirstSearch;
 
+    private static void eatGrass(List<Coordinates> wayToObject) {
+        Coordinates coordinatesOfGrass = wayToObject.get(0);
+        Entity[][] map = simulation.getMap().getMap();
+        map[coordinatesOfGrass.getX()][coordinatesOfGrass.getY()] = new Ground(coordinatesOfGrass);
+    }
+
     @Override
     public void makeMove() {
         breadthFirstSearch = new BreadthFirstSearch();
@@ -20,8 +26,7 @@ public class Herbivore extends Creature {
 
         if (wayToObject.size() == 1) {
             eatGrass(wayToObject);
-        }
-        else {
+        } else {
             moveToGrass(wayToObject);
         }
     }
@@ -31,14 +36,15 @@ public class Herbivore extends Creature {
         Entity[][] map = simulation.getMap().getMap();
         map[coordinates.getX()][coordinates.getY()] = new Ground(new Coordinates(coordinates.getX(), coordinates.getY()));
         // Set new coordinates to herbivore
-        Coordinates coordinatesToMove = wayToObject.get(speed - 1);
-        setCoordinates(coordinatesToMove);
-    }
+        Coordinates coordinatesToMove = wayToObject.get(0);
 
-    private static void eatGrass(List<Coordinates> wayToObject) {
-        Coordinates coordinatesOfGrass = wayToObject.get(0);
-        Entity[][] map = simulation.getMap().getMap();
-        map[coordinatesOfGrass.getX()][coordinatesOfGrass.getY()] = new Ground(coordinatesOfGrass);
+        if (map[coordinatesToMove.getX()][coordinatesToMove.getY()].getClass().equals(Herbivore.class)) {
+            coordinatesToMove = coordinates;
+        }
+
+        Herbivore herbivore = new Herbivore();
+        herbivore.setCoordinates(coordinatesToMove);
+        simulation.getMap().addObject(herbivore);
     }
 
     @Override
