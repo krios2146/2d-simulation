@@ -11,11 +11,11 @@ import java.util.List;
 public class BreadthFirstSearch {
 
     private final Simulation simulation = Main.simulation;
-    private Entity[][] map;
     private final List<Coordinates> queuedCoordinates = new ArrayList<>();
     private final List<Coordinates> exploredCoordinates = new ArrayList<>();
-    private Entity objectToFind;
     private final HashMap<Coordinates, Coordinates> childParentMap = new HashMap<>();
+    private Entity[][] map;
+    private Entity objectToFind;
 
     public List<Coordinates> findClosestObjectCoordinates(Coordinates currentCoordinates, Entity objectToFind) {
         this.map = simulation.getMap().getMap();
@@ -64,8 +64,8 @@ public class BreadthFirstSearch {
         }
 
         int endX = coordinates.getX() + 1;
-        if (endX > 9) {
-            endX = 9;
+        if (endX > map.length - 1) {
+            endX = map.length - 1;
         }
 
         int startY = coordinates.getY() - 1;
@@ -74,8 +74,8 @@ public class BreadthFirstSearch {
         }
 
         int endY = coordinates.getY() + 1;
-        if (endY > 9) {
-            endY = 9;
+        if (endY > map[0].length - 1) {
+            endY = map[0].length - 1;
         }
 
         for (int i = startX; i <= endX; i++) {
