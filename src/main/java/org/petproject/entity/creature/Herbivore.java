@@ -38,7 +38,7 @@ public class Herbivore extends Creature {
         // Set new coordinates to herbivore
         Coordinates coordinatesToMove = wayToObject.get(0);
 
-        if (map[coordinatesToMove.getX()][coordinatesToMove.getY()].getClass().equals(Herbivore.class)) {
+        if (map[coordinatesToMove.getX()][coordinatesToMove.getY()].getClass().equals(Creature.class)) {
             coordinatesToMove = coordinates;
         }
 
