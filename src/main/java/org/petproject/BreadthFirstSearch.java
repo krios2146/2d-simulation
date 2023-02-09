@@ -25,7 +25,7 @@ public class BreadthFirstSearch {
 
         Coordinates coordinatesOfDesiredObject = exploreQueuedObjects();
 
-        if (coordinatesOfDesiredObject == null) {
+        while (coordinatesOfDesiredObject == null) {
             coordinatesOfDesiredObject = exploreQueuedObjects();
         }
 
