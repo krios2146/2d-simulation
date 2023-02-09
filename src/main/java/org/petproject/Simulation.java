@@ -6,10 +6,10 @@ import org.petproject.action.TurnAction;
 import java.util.concurrent.TimeUnit;
 
 public class Simulation {
-    private Map map;
     private final InitAction initAction = new InitAction();
     private final TurnAction turnAction = new TurnAction();
     private final Renderer renderer = new Renderer();
+    private Map map;
     private int movesCounter = 0;
     private boolean isGameStopped = false;
 
@@ -21,7 +21,6 @@ public class Simulation {
 
     public void startSimulation() throws InterruptedException {
         map = initAction.initMap();
-        turnAction.renderMap(map);
 
         while (!isGameStopped) {
             nextTurn();
