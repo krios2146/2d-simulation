@@ -15,8 +15,8 @@ public class Map {
     }
 
     public Map() {
-        this.x = 10;
-        this.y = 10;
+        this.x = 20;
+        this.y = 20;
         this.map = new Entity[x][y];
     }
 
