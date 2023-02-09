@@ -102,7 +102,7 @@ public class InitAction extends Action {
         int amountOfHerbivores = amountOfGrass / 10;
         pool.put(1, amountOfHerbivores);
 
-        int amountOfPredators = amountOfHerbivores / 10;
+        int amountOfPredators = amountOfHerbivores / 5;
         pool.put(2, amountOfPredators);
 
         int amountOfTress = amountOfGrass / 10;
